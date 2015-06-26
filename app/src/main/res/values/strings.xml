@@ -4,4 +4,7 @@
     <string name="hello_world">Hello world!</string>
     <string name="action_settings">Settings</string>
     <string name="title_activity_settings">Settings</string>
+    <string name="preffrag">preffrag</string>
+    <string name="is_service">is_service</string>
+    <string name="lab_swipe">Swipe Up to Scan</string>
 </resources>

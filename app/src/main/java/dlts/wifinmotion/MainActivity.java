@@ -33,9 +33,7 @@ public class MainActivity extends Activity {
 
         Conn = new nettConn(this);
 
-        BTrun = (Button) findViewById(R.id.button_run);
-        BTsetting = (Button) findViewById(R.id.button_settings);
-        warning_box = (RelativeLayout) findViewById(R.id.warning_box);
+
         current_wifi = (TextView) findViewById(R.id.current_wifi);
     }
 
@@ -55,15 +53,11 @@ public class MainActivity extends Activity {
     }
 
     private void mainStateBad(){
-        // freeze buttons if wifi not available
-        BTrun.setClickable(false);
-        BTsetting.setClickable(false);
-        warning_box.setVisibility(View.VISIBLE);
+
+
     }
     private void mainStateGood(){
-        BTrun.setClickable(true);
-        BTsetting.setClickable(true);
-        warning_box.setVisibility(View.INVISIBLE);
+
         if( Conn.is_Connected) {
             current_wifi.setText(Conn.currentSSID);
         }

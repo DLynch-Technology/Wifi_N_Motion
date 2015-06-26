@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="blueish_back" type="color">#FF7DB4B5</item>
+    <item name="light_blueish" type="color">#FFE0EFF1</item>
+</resources>

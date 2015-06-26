@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    android:key="@string/preffrag">
+    <PreferenceCategory>
+
+        <CheckBoxPreference
+            android:key="is_service"
+            android:title="Run as a Service?"
+            android:defaultValue="true"/>
+        <CheckBoxPreference
+            android:key="issue_notif"
+            android:title="Notification?" />
+
+    </PreferenceCategory>
+</PreferenceScreen>

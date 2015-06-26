@@ -2,67 +2,51 @@
     xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@android:color/holo_purple">
+    android:background="@color/blueish_back">
 
-    <LinearLayout
-        android:orientation="vertical"
-        android:layout_width="wrap_content"
+    <FrameLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_centerInParent="true">
+        android:layout_alignParentBottom="true"
+        android:background="@color/light_blueish">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
-            android:text="VZQ55"
-            android:id="@+id/current_wifi"
-            android:textSize="40dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_gravity="center_horizontal" />
-
-        <TableRow
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content">
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Run"
-                android:id="@+id/button_run"
-                android:onClick="click_run" />
-
-            <Button
-                style="?android:attr/buttonStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Settings"
-                android:id="@+id/button_settings"
-                android:onClick="click_settings" />
-
-        </TableRow>
-    </LinearLayout>
-
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@android:color/darker_gray"
-        android:layout_centerInParent="true"
-        android:id="@+id/warning_box">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text="Your Wifi is not Enabled... Please double tap screen to enable wifi N motion"
-            android:id="@+id/textView2"
+            android:text="@string/lab_swipe"
+            android:id="@+id/textView"
+            android:padding="25dp"
             android:layout_gravity="center"
-            android:padding="50dp"
-            android:textSize="25dp"
-            android:layout_marginLeft="0dp"
-            android:layout_alignParentStart="false"
-            android:layout_centerVertical="true" />
-    </RelativeLayout>
+            android:textColor="@color/blueish_back" />
+    </FrameLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="VZQ55"
+        android:id="@+id/current_wifi"
+        android:textSize="40dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:visibility="invisible" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/ic_signal_wifi_off" />
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/imageView2"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:src="@drawable/bars" />
 
 </RelativeLayout>
