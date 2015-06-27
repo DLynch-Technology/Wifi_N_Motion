@@ -84,7 +84,7 @@ public class nettConn {
         available_conns.clear();
         saved_network_list.clear();
 
-        if ( ! isWifiEnabled() ) return false;
+        if ( ! isWifiEnabled() ) return false; //run bad state
 
 
         saved_networks = wifiManager.getConfiguredNetworks();
@@ -137,7 +137,7 @@ public class nettConn {
                             currentSSID = getcurrentSSID();
 
                             if ( currentSSID == null || !switch_to.equals(currentSSID)){
-                                wifiManager.enableNetwork(available_conns.get(switch_to), true);
+                                wifiManager.enableNetwork(saved_network_list.get(switch_to), true);
                                 funcs.Tmessage(context, "switch to: "+ switch_to +"/"+available_conns.get(switch_to));
                             } else {
                                 funcs.Tmessage(context, "connection :" + switch_to + " is best");
