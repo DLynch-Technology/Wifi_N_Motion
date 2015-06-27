@@ -1,7 +1,13 @@
 package dlts.wifinmotion;
 
 import android.app.Activity;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.v4.app.NotificationCompat;
+import android.support.v4.app.TaskStackBuilder;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
@@ -122,37 +128,25 @@ public class MainActivity extends Activity {
         }
         Conn.runMotion();
 
+        String mId = "wifinmotion";
+        NotificationCompat.Builder mBuilder =
+                new NotificationCompat.Builder(this)
+                        .setSmallIcon(R.drawable.ic_signal_wifi_off)
+                        .setContentTitle("My notification")
+                        .setAutoCancel(true)
+                        .setTicker("blah to the blah")
+                        .setContentText("Hello World!");
+
+        NotificationManager mNotificationManager =
+                (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+// mId allows you to update the notification later on.
+        mNotificationManager.notify(mId,1, mBuilder.build());
+
+        mNotificationManager.cancelAll();
 
     }
 
 
-//    @Override
-//    public boolean onTouchEvent(MotionEvent event){
-//        String DEBUG_TAG = "hell below";
-//        //int action = MotionEventCompat.getActionMasked(event);
-//
-//        switch(action) {
-//            case (MotionEvent.ACTION_DOWN) :
-//                Log.d(DEBUG_TAG,"Action was DOWN");
-//                return true;
-//            case (MotionEvent.ACTION_MOVE) :
-//                Log.d(DEBUG_TAG,"Action was MOVE");
-//                return true;
-//            case (MotionEvent.ACTION_UP) :
-//                Log.d(DEBUG_TAG,"Action was UP");
-//                return true;
-//            case (MotionEvent.ACTION_CANCEL) :
-//                Log.d(DEBUG_TAG,"Action was CANCEL");
-//                return true;
-//            case (MotionEvent.ACTION_OUTSIDE) :
-//                Log.d(DEBUG_TAG,"Movement occurred outside bounds " +
-//                        "of current screen element");
-//                return true;
-//            default :
-//                return super.onTouchEvent(event);
-//        }
-//    }
-//
 
 
 }
