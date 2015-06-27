@@ -38,13 +38,21 @@ public class nettConn {
     public void nettStart(){
         connManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-        wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
-
+        refreshWifiConn();
         runConnLoop();
     }
+    private void refreshWifiConn(){
+        wifiManager = (WifiManager)context.getSystemService(Context.WIFI_SERVICE);
+    }
 
-    public Boolean isWifiEnabled(){ return wifiManager.isWifiEnabled(); }
-    public Boolean isWifiConnected(){ return mWifi.isConnected(); }
+    public Boolean isWifiEnabled(){
+        refreshWifiConn();
+        return wifiManager.isWifiEnabled();
+    }
+    public Boolean isWifiConnected(){
+        refreshWifiConn();
+        return mWifi.isConnected();
+    }
 
     public Boolean runConnLoop(){
         is_Connected = false;
@@ -146,6 +154,10 @@ public class nettConn {
         }, 2000);
 
         return false;
+    }
+
+    public void enableWifi(Boolean bool){
+        wifiManager.setWifiEnabled(bool);
     }
 
 

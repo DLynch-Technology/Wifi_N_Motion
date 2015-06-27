@@ -8,14 +8,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:background="@color/light_blueish">
+        android:background="@color/light_blueish"
+        android:id="@+id/bottom_bar">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAppearance="?android:attr/textAppearanceLarge"
             android:text="@string/lab_swipe"
-            android:id="@+id/textView"
+            android:id="@+id/bottom_bar_text"
             android:padding="25dp"
             android:layout_gravity="center"
             android:textColor="@color/blueish_back" />

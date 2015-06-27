@@ -1,13 +1,13 @@
 package dlts.wifinmotion;
 
 import android.app.Activity;
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.FrameLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -21,8 +21,11 @@ public class MainActivity extends Activity {
 
     Button BTrun,BTsetting;
     RelativeLayout warning_box;
-    TextView current_wifi;
-
+    TextView current_wifi,bottom_bar_text;
+    FrameLayout bottom_bar;
+    private final String state0_text = "Swipe Up to enable wifi";
+    private final String state1_text = "Swipe Up to Scan";
+    int view_state = 0;
     static String active_connection = null;
 
 
@@ -35,6 +38,22 @@ public class MainActivity extends Activity {
 
 
         current_wifi = (TextView) findViewById(R.id.current_wifi);
+        bottom_bar = (FrameLayout) findViewById(R.id.bottom_bar);
+        bottom_bar_text = (TextView) findViewById(R.id.bottom_bar_text);
+
+
+        bottom_bar.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View view) {
+                if (view_state == 0){
+                    Conn.enableWifi(true);
+                    setAppState(1);
+                } else {
+                    scan();
+                }
+                return true;
+            }
+        });
     }
 
     @Override
@@ -53,13 +72,23 @@ public class MainActivity extends Activity {
     }
 
     private void mainStateBad(){
-
+        setAppState(0);
 
     }
     private void mainStateGood(){
-
+        setAppState(1);
         if( Conn.is_Connected) {
             current_wifi.setText(Conn.currentSSID);
+        }
+    }
+    private void setAppState(int newState){
+        view_state = newState;
+        if ( newState == 0 ){
+            bottom_bar.setBackgroundColor(getResources().getColor(R.color.red_alert));
+            bottom_bar_text.setText(state0_text);
+        } else {
+            bottom_bar.setBackgroundColor(getResources().getColor(R.color.light_blueish));
+            bottom_bar_text.setText(state1_text);
         }
     }
 
@@ -86,11 +115,7 @@ public class MainActivity extends Activity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void click_settings(View v){
-        funcs.loadActivty(this, Settings.class);
-    }
-
-    public void click_run(View v){
+    public void scan(){
         if ( !Conn.isWifiEnabled() ){
             mainStateBad();
             return;
@@ -101,6 +126,33 @@ public class MainActivity extends Activity {
     }
 
 
+//    @Override
+//    public boolean onTouchEvent(MotionEvent event){
+//        String DEBUG_TAG = "hell below";
+//        //int action = MotionEventCompat.getActionMasked(event);
+//
+//        switch(action) {
+//            case (MotionEvent.ACTION_DOWN) :
+//                Log.d(DEBUG_TAG,"Action was DOWN");
+//                return true;
+//            case (MotionEvent.ACTION_MOVE) :
+//                Log.d(DEBUG_TAG,"Action was MOVE");
+//                return true;
+//            case (MotionEvent.ACTION_UP) :
+//                Log.d(DEBUG_TAG,"Action was UP");
+//                return true;
+//            case (MotionEvent.ACTION_CANCEL) :
+//                Log.d(DEBUG_TAG,"Action was CANCEL");
+//                return true;
+//            case (MotionEvent.ACTION_OUTSIDE) :
+//                Log.d(DEBUG_TAG,"Movement occurred outside bounds " +
+//                        "of current screen element");
+//                return true;
+//            default :
+//                return super.onTouchEvent(event);
+//        }
+//    }
+//
 
 
 }
